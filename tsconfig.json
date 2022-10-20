@@ -16,9 +16,14 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
+      "@/components/*": ["src/components/*"],
+      "@/components/": ["src/components/index"],
+
       "@/pages/*": ["pages/*"],
-      "@/styles/*": ["styles/*"]
+      "@/pages/": ["pages/index"],
+
+      "@/styles/*": ["src/styles/*"],
+      "@/styles/": ["src/styles/index"]
     }
   },
   "include": [
