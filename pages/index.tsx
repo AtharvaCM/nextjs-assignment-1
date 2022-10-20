@@ -4,11 +4,7 @@ import type { NextPage } from "next";
 import Layout from "@/components/layout";
 
 const Home: NextPage = () => {
-  return (
-    <div className="text-red-500">
-      <Layout />
-    </div>
-  );
+  return <Layout>Home Page</Layout>;
 };
 
 export default Home;
