@@ -1,4 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Assignment 1
+
+## Description
+
+Show the vehicle make and model for make using API.
+
+### Requirements
+
+- We should see makes dropdown populated with makes from Makes API.
+- After selecting make and hitting “Fetch Models” button show list of models for selected make in cards.
+
+### Notes
+
+- Create custom hook to call API.
+- Create lightweight functional components.
+- Any library can be used for API calls e.g. fetch, Axios etc.
+- Show loading indicator when API is called till models are rendered on screen.
+- UI should be responsive. (Mobile, Desktop )
+- Create separate repo for assignment.
+- Commit each small change with proper commit message.
+
+### APIs
+
+- **Makes** : This will give you list of makes ( Car Manufacturers )  
+Endpoint : [getAllMakes](https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json)
+- **Models for Make** :  
+This will give you list of models for particular make. We need to pass make name we got from makes API instead of `make-name`  
+Endpoint : [getModelsForMake](https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/bmw?format=json)
+
+> All API’s are publicly available and free. You can also refer other examples on [NHTSA Vehicle API](https://vpic.nhtsa.dot.gov/api/)
+
+### Reference Material
+
+- Hooks : [YT Video](https://www.youtube.com/watch?v=TNhaISOUy6Q)
+- Git Commits : [Medium Article](https://medium.com/@nawarpianist/git-commit-best-practices-dab8d722de99)
 
 ## Getting Started
 
