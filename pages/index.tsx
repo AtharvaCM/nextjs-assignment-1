@@ -151,7 +151,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const url: string =
     "https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json";
   const response = await axios.get(url);
-  const makesArray = response.data.Results.slice(0, 25);
+  const makesArray = response.data.Results.slice(0, 30);
 
   return {
     props: {
