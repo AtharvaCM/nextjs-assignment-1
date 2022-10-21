@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import type { GetStaticProps, NextPage } from "next";
 
 import axios from "axios";
+import { NextSeo } from "next-seo";
 
 // custom hooks
 import { useAxios } from "src/hooks/useAxios";
@@ -50,6 +51,11 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
     <>
       <Layout>
         {/* SEO */}
+        <NextSeo
+          title="Assignment 1 | AtharvaCM"
+          description="Application which lets users select a make from the dropdown and displays the models for that make"
+          canonical="http://localhost:3000"
+        />
         {/* Select Make */}
         <div
           id="selectMakeContainer"
