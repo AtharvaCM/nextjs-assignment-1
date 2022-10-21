@@ -56,6 +56,7 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
           description="Application which lets users select a make from the dropdown and displays the models for that make"
           canonical="http://localhost:3000"
         />
+
         {/* Select Make */}
         <div
           id="selectMakeContainer"
