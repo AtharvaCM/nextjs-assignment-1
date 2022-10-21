@@ -20,7 +20,7 @@ type IndexPageProps = {
 
 const Home: NextPage<IndexPageProps> = ({ data }) => {
   // states
-  const [selectedOption, setSelectedOption] = useState<number | null>(440);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showModels, setShowModels] = useState<boolean>(false);
 
   // custom hooks
@@ -28,6 +28,11 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
 
   // handlers
   const handleFetchModels = () => {
+    // check if make is selected or not
+    if (selectedOption === null) {
+      alert("Select a make first");
+      return;
+    }
     // disable loading
     setLoaded(false);
     // fetch all models for the selected make

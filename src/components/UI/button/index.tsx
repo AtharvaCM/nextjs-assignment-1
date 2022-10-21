@@ -14,14 +14,16 @@ const BUTTON_STYLES: Record<string, string> = {
 type Props = {
   variant: "primary" | "secondary" | "success" | "danger";
   children?: React.ReactNode;
+  disabled?: boolean;
   onClick: () => void;
 };
 
-const Button: React.FC<Props> = ({ variant, children, onClick }) => {
+const Button: React.FC<Props> = ({ variant, children, onClick, disabled }) => {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       className={
         BUTTON_STYLES[variant] === undefined
           ? "primary"
