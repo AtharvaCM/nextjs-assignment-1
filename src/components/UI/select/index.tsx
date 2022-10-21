@@ -4,6 +4,7 @@ type Props = {
   children?: React.ReactNode;
   placeholderText: string;
   forId: string;
+  className?: string;
   onSelect: (value: number) => void;
 };
 
@@ -12,6 +13,7 @@ const Select: React.FC<Props> = ({
   forId,
   onSelect,
   children,
+  className,
 }) => {
   const handleSelectChange: React.ChangeEventHandler = (
     e: React.ChangeEvent<HTMLSelectElement>
@@ -20,7 +22,7 @@ const Select: React.FC<Props> = ({
   };
 
   return (
-    <div>
+    <div className={className}>
       <label
         htmlFor={forId}
         className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"

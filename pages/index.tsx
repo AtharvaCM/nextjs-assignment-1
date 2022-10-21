@@ -47,90 +47,94 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
   }
 
   return (
-    <Layout>
-      {/* Select Make */}
-      <div
-        id="selectMakeContainer"
-        className="container mt-4 flex flex-col items-center"
-      >
-        <h1 className="text-4xl font-extrabold text-black">Makes</h1>
-        <div className="flex items-end">
-          <Select
-            placeholderText="Select a make"
-            forId="makes"
-            onSelect={setSelectedOption}
-          >
-            {data.map((option) => (
-              <option key={option.Make_ID} value={option.Make_ID}>
-                {option.Make_Name}
-              </option>
-            ))}
-          </Select>
-          <Button variant="primary" onClick={handleFetchModels}>
-            Fetch Models
-          </Button>
-        </div>
-      </div>
-
-      {/* Display Models for selected Make if showModels */}
-      {showModels && (
+    <>
+      <Layout>
+        {/* SEO */}
+        {/* Select Make */}
         <div
-          id="displayModelsContainer"
-          className="container flex flex-col items-center"
+          id="selectMakeContainer"
+          className="container mt-4 flex flex-col items-center"
         >
-          {/* Show spinner until API response loaded */}
-          {!loaded && (
-            <div className="my-10 flex items-center justify-center">
-              <Spinner />
-            </div>
-          )}
-          {/* Display models */}
-          {loaded && (
-            <div className="my-8 flex min-w-[50%] justify-center">
-              <Card title={`${modelsData?.Results[0].Make_Name} Models`}>
-                <li className="py-3 sm:py-4">
-                  <div className="flex items-center justify-between space-x-4">
-                    <div className="flex-shrink-0">
-                      <p className="truncate text-sm font-bold text-gray-900 dark:text-white">
-                        Model Name
-                      </p>
-                    </div>
-                    <div className="min-w-0">
-                      <p className="truncate text-sm font-bold text-gray-900 dark:text-white">
-                        Model ID
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                {modelsData?.Results?.map(
-                  (model: {
-                    Make_ID: string | number;
-                    Make_Name: string;
-                    Model_ID: number;
-                    Model_Name: number;
-                  }) => (
-                    <li key={model.Make_ID} className="py-3 sm:py-4">
-                      <div className="flex items-center justify-between space-x-4">
-                        <div className="flex-shrink-0">
-                          <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                            {model.Model_Name}
-                          </p>
-                        </div>
-                        <div className="min-w-0">
-                          <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                            {model.Model_ID}
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  )
-                )}
-              </Card>
-            </div>
-          )}
+          <h1 className="text-4xl font-extrabold text-black">Makes</h1>
+          <div className="md: flex flex-col md:flex-row md:items-end">
+            <Select
+              placeholderText="Select a make"
+              forId="makes"
+              onSelect={setSelectedOption}
+              className="mb-2 md:mb-0"
+            >
+              {data.map((option) => (
+                <option key={option.Make_ID} value={option.Make_ID}>
+                  {option.Make_Name}
+                </option>
+              ))}
+            </Select>
+            <Button variant="primary" onClick={handleFetchModels}>
+              Fetch Models
+            </Button>
+          </div>
         </div>
-      )}
-    </Layout>
+
+        {/* Display Models for selected Make if showModels */}
+        {showModels && (
+          <div
+            id="displayModelsContainer"
+            className="container flex flex-col items-center"
+          >
+            {/* Show spinner until API response loaded */}
+            {!loaded && (
+              <div className="my-10 flex items-center justify-center">
+                <Spinner />
+              </div>
+            )}
+            {/* Display models */}
+            {loaded && (
+              <div className="my-8 flex min-w-[50%] justify-center">
+                <Card title={`${modelsData?.Results[0].Make_Name} Models`}>
+                  <li className="py-3 sm:py-4">
+                    <div className="flex items-center justify-between space-x-4">
+                      <div className="flex-shrink-0">
+                        <p className="truncate text-sm font-bold text-gray-900 dark:text-white">
+                          Model Name
+                        </p>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-bold text-gray-900 dark:text-white">
+                          Model ID
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  {modelsData?.Results?.map(
+                    (model: {
+                      Make_ID: string | number;
+                      Make_Name: string;
+                      Model_ID: number;
+                      Model_Name: number;
+                    }) => (
+                      <li key={model.Model_ID} className="py-3 sm:py-4">
+                        <div className="flex items-center justify-between space-x-4">
+                          <div className="flex-shrink-0">
+                            <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                              {model.Model_Name}
+                            </p>
+                          </div>
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                              {model.Model_ID}
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    )
+                  )}
+                </Card>
+              </div>
+            )}
+          </div>
+        )}
+      </Layout>
+    </>
   );
 };
 
