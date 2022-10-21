@@ -3,14 +3,15 @@ import type { GetStaticProps, NextPage } from "next";
 
 import axios from "axios";
 
+// custom hooks
+import { useAxios } from "src/hooks/useAxios";
+
 // custom components
 import Layout from "@/components/layout";
 import Button from "@/components/UI/button";
 import Select from "@/components/UI/select";
 import Spinner from "@/components/UI/spinner";
-
-// custom hooks
-import { useAxios } from "src/hooks/useAxios";
+import Card from "@/components/UI/card";
 
 type IndexPageProps = {
   data: { Make_ID: string | number; Make_Name: string }[];
@@ -50,7 +51,7 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
       {/* Select Make */}
       <div
         id="selectMakeContainer"
-        className="container flex flex-col items-center"
+        className="container mt-4 flex flex-col items-center"
       >
         <h1 className="text-4xl font-extrabold text-black">Makes</h1>
         <div className="flex items-end">
@@ -73,7 +74,10 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
 
       {/* Display Models for selected Make if showModels */}
       {showModels && (
-        <div id="displayModelsContainer" className="container">
+        <div
+          id="displayModelsContainer"
+          className="container flex flex-col items-center"
+        >
           {/* Show spinner until API response loaded */}
           {!loaded && (
             <div className="my-10 flex items-center justify-center">
@@ -82,16 +86,47 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
           )}
           {/* Display models */}
           {loaded && (
-            <p>
-              {modelsData?.Results?.map(
-                (model: {
-                  Make_ID: string | number;
-                  Make_Name: string;
-                  Model_ID: number;
-                  Model_Name: number;
-                }) => model.Model_Name
-              )}
-            </p>
+            <div className="my-8 flex min-w-[50%] justify-center">
+              <Card title={`${modelsData?.Results[0].Make_Name} Models`}>
+                <li className="py-3 sm:py-4">
+                  <div className="flex items-center justify-between space-x-4">
+                    <div className="flex-shrink-0">
+                      <p className="truncate text-sm font-bold text-gray-900 dark:text-white">
+                        Model Name
+                      </p>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-bold text-gray-900 dark:text-white">
+                        Model ID
+                      </p>
+                    </div>
+                  </div>
+                </li>
+                {modelsData?.Results?.map(
+                  (model: {
+                    Make_ID: string | number;
+                    Make_Name: string;
+                    Model_ID: number;
+                    Model_Name: number;
+                  }) => (
+                    <li key={model.Make_ID} className="py-3 sm:py-4">
+                      <div className="flex items-center justify-between space-x-4">
+                        <div className="flex-shrink-0">
+                          <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                            {model.Model_Name}
+                          </p>
+                        </div>
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                            {model.Model_ID}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  )
+                )}
+              </Card>
+            </div>
           )}
         </div>
       )}
