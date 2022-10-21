@@ -1,13 +1,27 @@
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 
 import axios from "axios";
+
+type AxiosReturnType = {
+  data: any;
+  error: string;
+  loaded: boolean;
+  cancel: () => void;
+  setLoaded: Dispatch<SetStateAction<boolean>>;
+  callAPI: (
+    url: string,
+    method?: string,
+    payload?: object,
+    headers?: object
+  ) => Promise<void>;
+};
 
 /**
  * @returns {object} object with data, loaded, error variables and callAPI, cancel, setLoaded methods
  *
  * @summary Custom hook to call API using axios library
  */
-export const useAxios = (): object => {
+export const useAxios = (): AxiosReturnType => {
   const [data, setData] = useState<object | null>(null);
   const [error, setError] = useState<string>("");
   const [loaded, setLoaded] = useState<boolean>(false);
