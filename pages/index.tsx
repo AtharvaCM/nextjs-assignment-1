@@ -67,7 +67,9 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
           id="selectMakeContainer"
           className="container mt-4 flex flex-col items-center"
         >
-          <h1 className="text-4xl font-extrabold text-black">Makes</h1>
+          <h1 className="text-4xl font-extrabold text-black" role="heading">
+            Makes
+          </h1>
           <div className="md: flex flex-col md:flex-row md:items-end">
             <Select
               placeholderText="Select a make"
@@ -75,11 +77,12 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
               onSelect={setSelectedOption}
               className="mb-2 md:mb-0"
             >
-              {data.map((option) => (
-                <option key={option.Make_ID} value={option.Make_ID}>
-                  {option.Make_Name}
-                </option>
-              ))}
+              {data &&
+                data.map((option) => (
+                  <option key={option.Make_ID} value={option.Make_ID}>
+                    {option.Make_Name}
+                  </option>
+                ))}
             </Select>
             <Button variant="primary" onClick={handleFetchModels}>
               Fetch Models
