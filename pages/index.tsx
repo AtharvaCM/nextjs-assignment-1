@@ -14,11 +14,11 @@ import Select from "@/components/UI/select";
 import Spinner from "@/components/UI/spinner";
 import Card from "@/components/UI/card";
 
-type IndexPageProps = {
+type HomePageProps = {
   data: { Make_ID: string | number; Make_Name: string }[];
 };
 
-const Home: NextPage<IndexPageProps> = ({ data }) => {
+const Home: NextPage<HomePageProps> = ({ data }) => {
   // states
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showModels, setShowModels] = useState<boolean>(false);
