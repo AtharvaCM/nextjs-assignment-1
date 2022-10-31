@@ -13,6 +13,8 @@ import Button from "@/components/UI/button";
 import Select from "@/components/UI/select";
 import Spinner from "@/components/UI/spinner";
 import Card from "@/components/UI/card";
+import List from "@/components/UI/list";
+import ListItem from "@/components/UI/listItem";
 
 type HomePageProps = {
   data: { Make_ID: string | number; Make_Name: string }[];
@@ -106,8 +108,8 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
             {loaded && (
               <div className="my-8 flex min-w-[50%] justify-center">
                 <Card title={`${modelsData?.Results[0].Make_Name} Models`}>
-                  <li className="py-3 sm:py-4">
-                    <div className="flex items-center justify-between space-x-4">
+                  <List>
+                    <ListItem>
                       <div className="flex-shrink-0">
                         <p className="truncate text-sm font-bold text-gray-900 dark:text-white">
                           Model Name
@@ -118,17 +120,15 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
                           Model ID
                         </p>
                       </div>
-                    </div>
-                  </li>
-                  {modelsData?.Results?.map(
-                    (model: {
-                      Make_ID: string | number;
-                      Make_Name: string;
-                      Model_ID: number;
-                      Model_Name: number;
-                    }) => (
-                      <li key={model.Model_ID} className="py-3 sm:py-4">
-                        <div className="flex items-center justify-between space-x-4">
+                    </ListItem>
+                    {modelsData?.Results?.map(
+                      (model: {
+                        Make_ID: string | number;
+                        Make_Name: string;
+                        Model_ID: number;
+                        Model_Name: number;
+                      }) => (
+                        <ListItem key={model.Model_ID}>
                           <div className="flex-shrink-0">
                             <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
                               {model.Model_Name}
@@ -139,10 +139,10 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
                               {model.Model_ID}
                             </p>
                           </div>
-                        </div>
-                      </li>
-                    )
-                  )}
+                        </ListItem>
+                      )
+                    )}
+                  </List>
                 </Card>
               </div>
             )}
