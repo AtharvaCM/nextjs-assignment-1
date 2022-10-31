@@ -33,7 +33,7 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
       alert("Select a make first");
       return;
     }
-    // disable loading
+
     setLoaded(false);
     // fetch all models for the selected make
     const url: string = `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/${selectedOption}?format=json`;
@@ -42,7 +42,7 @@ const Home: NextPage<IndexPageProps> = ({ data }) => {
 
   // side effects
   useEffect(() => {
-    // when loading is finished, show the models
+    // when API loading is finished, show the models
     if (loaded) {
       setShowModels(true);
     }
@@ -159,7 +159,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const url: string =
     "https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json";
   const response = await axios.get(url);
-  const makesArray = response.data.Results.slice(0, 30);
+  const makesArray = response.data.Results;
 
   return {
     props: {
