@@ -13,14 +13,7 @@ const Card: React.FC<CardProps> = ({ title, children }) => {
           {title}
         </h5>
       </div>
-      <div className="flow-root">
-        <ul
-          role="list"
-          className="divide-y divide-gray-200 dark:divide-gray-600"
-        >
-          {children}
-        </ul>
-      </div>
+      <div className="flow-root">{children}</div>
     </div>
   );
 };
