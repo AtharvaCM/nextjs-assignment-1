@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { GetStaticProps, NextPage } from "next";
 
 import axios from "axios";
@@ -36,19 +36,12 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
       return;
     }
 
+    setShowModels(true);
     setLoaded(false);
     // fetch all models for the selected make
     const url: string = `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/${selectedOption}?format=json`;
     callAPI(url);
   };
-
-  // side effects
-  useEffect(() => {
-    // when API loading is finished, show the models
-    if (loaded) {
-      setShowModels(true);
-    }
-  }, [loaded]);
 
   if (error) {
     return <p>Some error occured while calling the API</p>;
@@ -65,48 +58,50 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
         />
 
         {/* Select Make */}
-        <div
-          id="selectMakeContainer"
-          className="container mt-4 flex flex-col items-center"
-        >
-          <h1 className="text-4xl font-extrabold text-black" role="heading">
-            Makes
-          </h1>
-          <div className="md: flex flex-col md:flex-row md:items-end">
-            <Select
-              placeholderText="Select a make"
-              forId="makes"
-              onSelect={setSelectedOption}
-              className="mb-2 md:mb-0"
-            >
-              {data &&
-                data.map((option) => (
-                  <option key={option.Make_ID} value={option.Make_ID}>
-                    {option.Make_Name}
-                  </option>
-                ))}
-            </Select>
-            <Button variant="primary" onClick={handleFetchModels}>
-              Fetch Models
-            </Button>
+        <div id="selectMakeContainer" className="mx-[10%]">
+          <div className="mx-auto mt-6 max-w-[1024px]">
+            <div className="flex items-center justify-center">
+              <h1 className="text-4xl font-extrabold text-black" role="heading">
+                Makes
+              </h1>
+            </div>
+            <div className="flex flex-col md:flex-row">
+              <Select
+                placeholderText="Select a make"
+                forId="makes"
+                onSelect={setSelectedOption}
+                className="mb-2 flex-1 md:mb-0"
+              >
+                {data &&
+                  data.map((option) => (
+                    <option key={option.Make_ID} value={option.Make_ID}>
+                      {option.Make_Name}
+                    </option>
+                  ))}
+              </Select>
+              <Button
+                variant="primary"
+                onClick={handleFetchModels}
+                className="md:ml-2"
+              >
+                Fetch Models
+              </Button>
+            </div>
           </div>
         </div>
 
         {/* Display Models for selected Make if showModels */}
-        {showModels && (
-          <div
-            id="displayModelsContainer"
-            className="container flex flex-col items-center"
-          >
+        <div id="displayModelsContainer" className="mx-[10%]">
+          <div className="mx-auto mt-8 max-w-[1024px]">
             {/* Show spinner until API response loaded */}
-            {!loaded && (
+            {showModels && !loaded && (
               <div className="my-10 flex items-center justify-center">
                 <Spinner />
               </div>
             )}
             {/* Display models */}
-            {loaded && (
-              <div className="my-8 flex min-w-[50%] justify-center">
+            {showModels && loaded && (
+              <div className="my-8 flex w-full justify-center">
                 <Card title={`${modelsData?.Results[0].Make_Name} Models`}>
                   <List>
                     <ListItem>
@@ -147,7 +142,7 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
               </div>
             )}
           </div>
-        )}
+        </div>
       </Layout>
     </>
   );
