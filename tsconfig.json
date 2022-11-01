@@ -55,24 +55,12 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
     "paths": {
-      "@/components/*": [
-        "src/components/*"
-      ],
-      "@/components/": [
-        "src/components/index"
-      ],
-      "@/pages/*": [
-        "pages/*"
-      ],
-      "@/pages/": [
-        "pages/index"
-      ],
-      "@/styles/*": [
-        "src/styles/*"
-      ],
-      "@/styles/": [
-        "src/styles/index"
-      ]
+      "@/components/*": ["src/components/*"],
+      "@/components/": ["src/components/index"],
+      "@/pages/*": ["pages/*"],
+      "@/pages/": ["pages/index"],
+      "@/styles/*": ["src/styles/*"],
+      "@/styles/": ["src/styles/index"]
     },
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -85,9 +73,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/__tests__/*.test.tsx",
     "__tests__/index.test.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
