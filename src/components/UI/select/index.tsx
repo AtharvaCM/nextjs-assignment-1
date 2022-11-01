@@ -29,7 +29,7 @@ const Select: React.FC<Props> = ({
         onChange={handleSelectChange}
         defaultValue={0}
       >
-        <option disabled={true} value={0}>
+        <option disabled={true} value={0} role={"option"}>
           {placeholderText}
         </option>
         {children}
