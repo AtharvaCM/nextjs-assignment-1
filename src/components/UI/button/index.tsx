@@ -15,8 +15,8 @@ type Props = {
   children?: React.ReactNode;
   disabled?: boolean;
   className?: string;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   variant: "primary" | "secondary" | "success" | "danger";
-  onClick: () => void;
 };
 
 const Button: React.FC<Props> = ({
@@ -24,11 +24,12 @@ const Button: React.FC<Props> = ({
   children,
   className,
   onClick,
-  disabled,
+  disabled = false,
 }) => {
   return (
     <button
       type="button"
+      role="button"
       onClick={onClick}
       disabled={disabled}
       className={`
