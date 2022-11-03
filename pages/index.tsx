@@ -74,7 +74,11 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
               >
                 {data &&
                   data.map((option) => (
-                    <option key={option.Make_ID} value={option.Make_ID}>
+                    <option
+                      key={option.Make_ID}
+                      value={option.Make_ID}
+                      role={"option"}
+                    >
                       {option.Make_Name}
                     </option>
                   ))}
