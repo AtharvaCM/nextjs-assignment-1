@@ -35,7 +35,6 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
       alert("Select a make first");
       return;
     }
-
     setShowModels(true);
     setLoaded(false);
     // fetch all models for the selected make
@@ -129,7 +128,10 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
                       }) => (
                         <ListItem key={model.Model_ID}>
                           <div className="flex-shrink-0">
-                            <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                            <p
+                              data-testid="model-name"
+                              className="truncate text-sm font-medium text-gray-900 dark:text-white"
+                            >
                               {model.Model_Name}
                             </p>
                           </div>

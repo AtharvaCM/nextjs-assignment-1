@@ -38,7 +38,6 @@ const EXPECTED_RESULT = {
 };
 
 jest.mock("axios");
-const mockedAxios = jest.mocked(axios, { shallow: true });
 
 describe("Home", () => {
   // Test 1
@@ -73,17 +72,15 @@ describe("Home", () => {
     expect(option.selected).toBeTruthy();
     expect(option2.selected).toBeFalsy();
 
-    axios.get.mockResolvedValue({ data: EXPECTED_RESULT });
+    axios.request.mockResolvedValue({ data: EXPECTED_RESULT });
 
     // Click fetch models button
-    user.click(fetchModelsButton);
+    expect(fetchModelsButton).toBeInTheDocument();
+    await user.click(fetchModelsButton);
 
-    // Call API
-    const result = await axios.get(
-      "https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsdormake/bmw?format=json"
-    );
+    // check if the BMW models are renderd
+    const model1 = screen.getAllByTestId("model-name");
 
-    expect(mockedAxios.get).toHaveBeenCalled();
-    expect(result.data).toBe(EXPECTED_RESULT);
+    expect(model1.length === 3).toBeTruthy();
   });
 });
